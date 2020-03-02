@@ -15,6 +15,10 @@
             ></v-data-table>
           </v-col>
         </v-row>
+        <v-btn @click="newUser" text style="float: left;">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+        <p style="margin-top: 7px; padding-left: 10px;">Adicionar Novo Usuário</p>
       </div>
     </v-card-widget>
   </div>
@@ -39,7 +43,8 @@ export default {
         align: 'left',
         value: 'nome',
       },
-      { text: 'Email', value: 'email' }
+      { text: 'Email', value: 'email' },
+      { text: 'Usuário Ativo', value: 'habilitado' }
     ],
     usuarios :[]
   }),
@@ -55,7 +60,9 @@ export default {
   },
 
   methods: {
-
+    newUser() {
+      this.$router.push('/newUser')
+    }
   }
 }
 </script>

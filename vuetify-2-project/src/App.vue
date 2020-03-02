@@ -16,7 +16,7 @@
                 <span>Olá, Usuário</span>
                 <v-btn @click="logout" text>
                   <v-icon>power_settings_new</v-icon>
-              </v-btn>
+                </v-btn>
             </v-app-bar>
 
             <v-content class="content">

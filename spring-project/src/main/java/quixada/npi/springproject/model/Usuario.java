@@ -33,12 +33,14 @@ public class Usuario implements UserDetails {
 
 	private boolean habilitado;
 
+
 	public Usuario() {}
 
-	public Usuario (Integer id, String nome, String email) {
+	public Usuario (Integer id, String nome, String email, boolean habilitado) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.habilitado = habilitado;
 	}
 
 	public Integer getId() {
@@ -76,6 +78,7 @@ public class Usuario implements UserDetails {
 	public void setHabilitado(boolean habilitado) {
 		this.habilitado = habilitado;
 	}
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

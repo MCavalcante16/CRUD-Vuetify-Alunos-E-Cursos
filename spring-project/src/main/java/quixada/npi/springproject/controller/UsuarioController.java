@@ -27,7 +27,7 @@ public class UsuarioController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("")
+    @PostMapping("/newUser")
     public ResponseEntity<List<Usuario>> create(@RequestBody Usuario usuario) {
         // Cadastrar usuário e retornar usuário cadastrado...
         return ResponseEntity.ok().build();
