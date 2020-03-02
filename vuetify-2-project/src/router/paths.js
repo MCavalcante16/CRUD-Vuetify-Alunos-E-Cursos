@@ -2,6 +2,7 @@ import store from '../store'
 import LoginPage from '../views/Login'
 import Home from '../views/Home'
 
+
 export default [
 
 

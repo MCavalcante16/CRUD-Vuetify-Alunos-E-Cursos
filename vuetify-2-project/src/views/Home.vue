@@ -39,7 +39,14 @@ export default {
         align: 'left',
         value: 'nome',
       },
-      { text: 'Email', value: 'email' }
+      { 
+        text: 'Email', 
+        value: 'email' 
+      },
+      { 
+        text: 'Ativo', 
+        value: 'habilitado' 
+      }
     ],
     usuarios :[]
   }),
