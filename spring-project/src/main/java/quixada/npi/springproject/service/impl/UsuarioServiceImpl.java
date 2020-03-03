@@ -1,6 +1,7 @@
 package quixada.npi.springproject.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import quixada.npi.springproject.model.Usuario;
 import quixada.npi.springproject.repository.UsuarioRepository;
@@ -22,6 +23,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
+    }
+
+    public void cadastrar(Usuario usuario) {
+        usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
+        usuarioRepository.save(usuario);
     }
 
 }

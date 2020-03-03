@@ -10,13 +10,12 @@ import quixada.npi.springproject.service.UsuarioService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("")
+    @GetMapping("/usuarios")
     public ResponseEntity<List<Usuario>> findAll() {
         return ResponseEntity.ok(usuarioService.findAll());
     }
@@ -30,6 +29,7 @@ public class UsuarioController {
     @PostMapping("/newUser")
     public ResponseEntity<List<Usuario>> create(@RequestBody Usuario usuario) {
         // Cadastrar usuário e retornar usuário cadastrado...
+        usuarioService.cadastrar(usuario);
         return ResponseEntity.ok().build();
     }
 

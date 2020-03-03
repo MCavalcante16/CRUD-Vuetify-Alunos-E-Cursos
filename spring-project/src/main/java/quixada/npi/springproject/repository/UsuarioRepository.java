@@ -16,4 +16,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("SELECT new Usuario(u.id, u.nome, u.email, u.habilitado) FROM Usuario u")
     List<Usuario> findAll();
 
+
+
 }

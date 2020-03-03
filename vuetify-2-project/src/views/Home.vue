@@ -10,7 +10,7 @@
             <v-data-table
                     :headers="headers"
                     :items="usuarios"
-                    :items-per-page="5"
+                    :items-per-page="10"
                     class="elevation-1"
             >
               <template v-slot:item.habilitado="{ item }">
@@ -48,7 +48,7 @@ export default {
         value: 'nome',
       },
       { text: 'Email', value: 'email' },
-      { text: 'Usuário Ativo', value: 'habilitado' }
+      { text: 'Usuário Ativo', value: 'habilitado', sortable: false }
     ],
     usuarios :[]
   }),

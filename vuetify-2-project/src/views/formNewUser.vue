@@ -37,6 +37,7 @@
         data: () => ({
             valid: true,
             loading: false,
+            nome: '',
             email: '',
             password: '',
             habilitado: true,
@@ -54,12 +55,12 @@
             onSubmit () {
                 this.loading = true
                 if (this.$refs.form.validate()) {
-                    this.$store.dispatch('auth/login', {email: this.email, password: this.password})
+                    this.$store.dispatch('auth/newUser', {nome: this.nome, email: this.email, password: this.password, habilitado: this.habilitado})
                         .then(() => {
                             if (this.$store.getters['auth/isAuthenticated']) {
                                 this.$router.push('/')
                             } else {
-                                this.error = 'Usuário e/ou senha inválidos'
+                                this.error = 'Informações Inválidas: Tente um email diferente.'
                             }
                         })
                 }
