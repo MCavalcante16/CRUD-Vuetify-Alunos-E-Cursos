@@ -13,7 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Usuario findByEmail(String email);
 
-    @Query("SELECT new Usuario(u.id, u.nome, u.email) FROM Usuario u")
+    @Query("SELECT new Usuario(u.id, u.nome, u.email, u.habilitado) FROM Usuario u")
     List<Usuario> findAll();
 
 }
