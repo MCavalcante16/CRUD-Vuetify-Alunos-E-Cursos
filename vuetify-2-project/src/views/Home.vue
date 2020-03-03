@@ -12,7 +12,11 @@
                     :items="usuarios"
                     :items-per-page="5"
                     class="elevation-1"
-            ></v-data-table>
+            >
+              <template v-slot:item.habilitado="{ item }">
+                <v-simple-checkbox v-model="item.habilitado" disabled></v-simple-checkbox>
+              </template>
+            </v-data-table>
           </v-col>
         </v-row>
         <v-btn @click="newUser" text style="float: left;">
