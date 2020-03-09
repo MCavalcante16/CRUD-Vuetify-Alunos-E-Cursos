@@ -95,6 +95,7 @@ export default {
       { text: "Email", value: 'email' },
       { text: "Usuário Ativo", value: 'habilitado', sortable: false },
       { text: "Ações", value: 'acoes', sortable: false }
+
     ],
     usuarios: [],
     editedIndex: -1,

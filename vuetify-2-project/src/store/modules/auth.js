@@ -31,6 +31,19 @@ const actions = {
         })
     },
 
+    newUser ({commit, dispatch}, authData) {
+        return new Promise((resolve, reject) => {
+            axios.post('/newUser', {
+                nome: authData.nome,
+                email: authData.email,
+                password: authData.password,
+                habilitado: authData.habilitado
+            })
+            .catch(error => console.log(error))
+            .finally(() => resolve())
+        })
+    },
+
     updateToken({commit}, tokenData) {
         const date = new Date();
         localStorage.setItem('token', tokenData.token);
