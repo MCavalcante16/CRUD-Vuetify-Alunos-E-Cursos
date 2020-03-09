@@ -12,4 +12,7 @@ public interface UsuarioService {
 
     void cadastrar(Usuario usuario);
 
+    void update(Usuario usuario);
+
+    void delete(Integer id);
 }

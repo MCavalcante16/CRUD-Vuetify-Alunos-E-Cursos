@@ -34,8 +34,7 @@
                               <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
-                              <v-switch v-model="editedItem.habilitado" :label="`Habilitado: ${editedItem.habilitado.toString()}`"></v-switch>
-                                
+                              <v-switch v-model="editedItem.habilitado" :label="`Habilitado`"></v-switch>
                             </v-col>
                           </v-row>
                         </v-container>
@@ -100,11 +99,13 @@ export default {
     usuarios: [],
     editedIndex: -1,
     editedItem: {
+      id: 'id',
       nome: 'nome',
       email: 'email',
       habilitado: 'habilitado'
     },
     defaultItem: {
+      id: "",
       nome: "",
       email: "",
       habilitado: false
@@ -135,6 +136,10 @@ export default {
       deleteItem (item) {
         const index = this.usuarios.indexOf(item)
         confirm('Are you sure you want to delete this item?') && this.usuarios.splice(index, 1)
+        this.$store.dispatch('auth/delete', {id: this.usuarios[this.editedIndex].id})
+              .then(() => {
+                this.$router.push('/').catch(err => {})
+              })
       },
       close () {
         this.dialog = false
@@ -145,7 +150,15 @@ export default {
       },
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.usuarios[this.editedIndex], this.editedItem)
+       //   Object.assign(this.usuarios[this.editedIndex], this.editedItem)
+          this.$store.dispatch('auth/update', {id: this.usuarios[this.editedIndex].id,
+           nome: this.editedItem.nome, email: this.editedItem.email,
+           habilitado: this.editedItem.habilitado})
+              .then(() => {
+                this.$router.push('/').catch(err => {})
+              })
+          
+
         } else {
           this.usuarios.push(this.editedItem)
         }

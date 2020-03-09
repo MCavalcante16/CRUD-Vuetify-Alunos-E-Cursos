@@ -30,4 +30,16 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.save(usuario);
     }
 
+    public void update(Usuario usuario) {
+        Usuario usuarioU = usuarioRepository.findByEmail(usuario.getEmail());
+        usuarioU.setNome(usuario.getNome());
+        usuarioU.setEmail(usuario.getEmail());
+        usuarioU.setHabilitado(usuario.isHabilitado());
+        usuarioRepository.update(usuarioU.getNome(), usuarioU.getEmail(), usuarioU.isHabilitado(), usuarioU.getId());
+    }
+
+    public void delete(Integer id) {
+        usuarioRepository.deleteById(id);
+    }
+
 }
