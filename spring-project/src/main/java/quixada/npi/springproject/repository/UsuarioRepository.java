@@ -16,6 +16,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("SELECT new Usuario(u.id, u.nome, u.email, u.habilitado) FROM Usuario u")
     List<Usuario> findAll();
 
-
+    @Query("update Usuario u set u.nome = ?1, u.email = ?2, u.habilitado = ?3 where u.id = ?3")
+    void update(String nome, String email, boolean habilitado, Integer userId);
 
 }

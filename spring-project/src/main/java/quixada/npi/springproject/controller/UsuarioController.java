@@ -1,5 +1,6 @@
 package quixada.npi.springproject.controller;
 
+import com.sun.mail.iap.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,18 +29,22 @@ public class UsuarioController {
 
     @PostMapping("/newUser")
     public ResponseEntity<List<Usuario>> create(@RequestBody Usuario usuario) {
-        // Cadastrar usuário e retornar usuário cadastrado...
         usuarioService.cadastrar(usuario);
         return ResponseEntity.ok().build();
     }
 
-    //@DeleteMapping("{id}")
+    @DeleteMapping("{id}")
+    public ResponseEntity<List<Usuario>> delete(@PathVariable Integer id) {
+        usuarioService.delete(id);
+        return ResponseEntity.ok().build();
+    }
     //TODO: excluir usuário
 
-    // @PutMapping("{id}")
-    /*public ResponseEntity<Usuario> update(@RequestBody Usuario usuario) {
-
-    }*/
+    @PutMapping("/{id}")
+    public ResponseEntity<List<Usuario>> update(@RequestBody Usuario usuario) {
+        usuarioService.update(usuario);
+        return ResponseEntity.ok().build();
+    }
 
 
 

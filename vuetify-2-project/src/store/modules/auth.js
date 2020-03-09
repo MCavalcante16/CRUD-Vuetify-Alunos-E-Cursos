@@ -44,6 +44,31 @@ const actions = {
         })
     },
 
+    update ({commit, dispatch}, authData) {
+        return new Promise((resolve, reject) => {
+            axios.put('/' + authData.id, {
+                id: authData.id, 
+                nome: authData.nome,
+                email: authData.email,
+                habilitado: authData.habilitado
+            })
+            .catch(error => console.log(error))
+            .finally(() => resolve())
+        })
+    },
+
+    delete ({commit, dispatch}, authData) {
+        return new Promise((resolve, reject) => {
+            axios.delete('/' + authData.id, {
+                id: authData.id
+            })
+            .catch(error => console.log(error))
+            .finally(() => resolve())
+        })
+    },
+
+
+
     updateToken({commit}, tokenData) {
         const date = new Date();
         localStorage.setItem('token', tokenData.token);
