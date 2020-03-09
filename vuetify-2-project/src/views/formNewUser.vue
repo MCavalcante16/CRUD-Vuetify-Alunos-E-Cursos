@@ -9,9 +9,9 @@
                     <v-form @submit.prevent="onSubmit" ref="form" lazy-validation v-model="valid">
                         <v-card-text>
                             <p class="error--text text-center">{{error}}</p>
-                            <v-text-field label="Nome" name="nome" prepend-icon="person" type="text" v-model="nome" required :rules="requiredRule"/>
-                            <v-text-field label="E-mail" name="email" prepend-icon="mdi-email" type="text" v-model="email" required :rules="requiredRule"/>
-                            <v-text-field id="password" label="Password" name="password" prepend-icon="lock" type="password" v-model="password" required :rules="requiredRule"/>
+                            <v-text-field label="Nome" name="nome" prepend-icon="person" type="text" v-model="nome" required :rules="rules.required"/>
+                            <v-text-field label="E-mail" name="email" prepend-icon="mdi-email" type="text" v-model="email" required :rules="[rules.required, rules.email]"/>
+                            <v-text-field id="password" label="Password" name="password" prepend-icon="lock" type="password" v-model="password" required :rules="rules.required"/>
                             <v-switch 
                             v-model="habilitado"
                             :label="`Usuário Ativo`"
@@ -42,9 +42,14 @@
             password: '',
             habilitado: true,
             error: '',
-            requiredRule: [
-                v => !!v || 'Campo obrigatório'
-            ],
+            rules: {
+            required: value => !!value || 'Required.',
+            counter: value => value.length <= 20 || 'Max 20 characters',
+            email: value => {
+                const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                return pattern.test(value) || 'Invalid e-mail.'
+            },
+          },
         }),
         created() {
             if (this.invalidToken) {
