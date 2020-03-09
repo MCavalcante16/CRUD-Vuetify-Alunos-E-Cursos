@@ -3,6 +3,7 @@ import LoginPage from '../views/Login'
 import Home from '../views/Home'
 import formNewUser from '../views/formNewUser'
 
+
 export default [
 
 
