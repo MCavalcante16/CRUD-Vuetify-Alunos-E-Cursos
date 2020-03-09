@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <v-card-widget enableActions :title="'Página Inicial'">
@@ -16,7 +15,7 @@
                 <v-toolbar flat color="white">
                   <v-divider class="mx-4" inset vertical></v-divider>
                   <v-spacer></v-spacer>
-                  <v-dialog v-model="dialog" max-width="500px">
+                  <v-dialog v-model="dialog" max-width="650px">
                     <template v-slot:activator="{ on }">
                       <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
                     </template>
@@ -35,7 +34,8 @@
                               <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
-                              <v-switch v-model="editedItem.habilitado" label= "`Ativo: ${}`"></v-switch>
+                              <v-switch v-model="editedItem.habilitado" :label="`Habilitado: ${editedItem.habilitado.toString()}`"></v-switch>
+                                
                             </v-col>
                           </v-row>
                         </v-container>
@@ -131,12 +131,10 @@ export default {
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
-
       deleteItem (item) {
         const index = this.usuarios.indexOf(item)
         confirm('Are you sure you want to delete this item?') && this.usuarios.splice(index, 1)
       },
-
       close () {
         this.dialog = false
         setTimeout(() => {
@@ -144,7 +142,6 @@ export default {
           this.editedIndex = -1
         }, 300)
       },
-
       save () {
         if (this.editedIndex > -1) {
           Object.assign(this.usuarios[this.editedIndex], this.editedItem)
