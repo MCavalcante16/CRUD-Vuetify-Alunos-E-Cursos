@@ -15,15 +15,11 @@
                 <v-toolbar flat color="white">
                   <v-divider class="mx-4" inset vertical></v-divider>
                   <v-spacer></v-spacer>
+                  <template>
+                    <v-btn @click="newUser" color="primary" dark class="mb-2">Adicionar Novo Usuário</v-btn>
+                  </template>
                   <v-dialog v-model="dialog" max-width="650px">
-                    <template v-slot:activator="{ on }">
-                      <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
-                    </template>
-                    <v-card>
-                      <v-card-title>
-                        <span class="headline">{{ formTitle }}</span>
-                      </v-card-title>
-
+                <v-card>
                       <v-card-text>
                         <v-container>
                           <v-row>
@@ -34,8 +30,10 @@
                               <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
-                              <v-switch v-model="editedItem.habilitado" :label="`Habilitado: ${editedItem.habilitado.toString()}`"></v-switch>
-                                
+                              <v-switch
+                                v-model="editedItem.habilitado"
+                                :label="`Habilitado: ${editedItem.habilitado.toString()}`"
+                              ></v-switch>
                             </v-col>
                           </v-row>
                         </v-container>
@@ -50,23 +48,14 @@
                   </v-dialog>
                 </v-toolbar>
               </template>
-              
-              <template v-slot:item.acoes= "{ item }">
-                <v-icon small class="mr-2" @click= "editItem(item)">mdi-pencil</v-icon>
-                <v-icon small @click= "deleteItem(item)">mdi-delete</v-icon>
-              </template>
-              
-              <template v-slot:no-data>
-                <v-btn color="primary" @click= "initialize">Reset</v-btn>
+
+              <template v-slot:item.acoes="{ item }">
+                <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                <v-icon  :disabled= item.habilitado small @click="deleteItem(item)" >mdi-delete</v-icon>
               </template>
             </v-data-table>
           </v-col>
         </v-row>
-
-        <v-btn @click="newUser" text style="float: left;">
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-        <p style="margin-top: 7px; padding-left: 10px;">Adicionar Novo Usuário</p>
       </div>
     </v-card-widget>
   </div>
@@ -85,6 +74,9 @@ export default {
     VCardWidget
   },
   data: () => ({
+     email: value => {
+                const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                return pattern.test(value) || 'Invalid e-mail.'},
     dialog: false,
     headers: [
       {
@@ -92,17 +84,16 @@ export default {
         align: "left",
         value: "nome"
       },
-      { text: "Email", value: 'email' },
-      { text: "Usuário Ativo", value: 'habilitado', sortable: false },
-      { text: "Ações", value: 'acoes', sortable: false }
-
+      { text: "Email", value: "email" },
+      { text: "Usuário Ativo", value: "habilitado", sortable: false },
+      { text: "Ações", value: "acoes", sortable: false }
     ],
     usuarios: [],
     editedIndex: -1,
     editedItem: {
-      nome: 'nome',
-      email: 'email',
-      habilitado: 'habilitado'
+      nome: "nome",
+      email: "email",
+      habilitado: "habilitado"
     },
     defaultItem: {
       nome: "",
@@ -118,39 +109,32 @@ export default {
       })
       .catch(console.error);
   },
-  computed: {
-     formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-      }
-  },
+  computed: {},
   methods: {
     newUser() {
       this.$router.push("/newUser");
     },
-      editItem (item) {
-        this.editedIndex = this.usuarios.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
-      },
-      deleteItem (item) {
-        const index = this.usuarios.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.usuarios.splice(index, 1)
-      },
-      close () {
-        this.dialog = false
-        setTimeout(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        }, 300)
-      },
-      save () {
-        if (this.editedIndex > -1) {
-          Object.assign(this.usuarios[this.editedIndex], this.editedItem)
-        } else {
-          this.usuarios.push(this.editedItem)
-        }
-        this.close()
-      }    
+    editItem(item) {
+      this.editedIndex = this.usuarios.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+    deleteItem(item) {
+      const index = this.usuarios.indexOf(item);
+      confirm("Você tem certeza que quer deletar esse item?") &&
+        this.usuarios.splice(index, 1);
+    },
+    close() {
+      this.dialog = false;
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      }, 300);
+    },
+    save() {
+      Object.assign(this.usuarios[this.editedIndex], this.editedItem);
+      this.close();
+    }
   }
 };
 </script>
