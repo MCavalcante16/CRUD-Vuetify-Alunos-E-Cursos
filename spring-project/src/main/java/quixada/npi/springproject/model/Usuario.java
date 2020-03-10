@@ -1,6 +1,5 @@
 package quixada.npi.springproject.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -33,6 +32,9 @@ public class Usuario implements UserDetails {
 
 	private boolean habilitado;
 
+	@ManyToOne
+	private Curso curso;
+
 
 	public Usuario() {}
 
@@ -43,12 +45,16 @@ public class Usuario implements UserDetails {
 		this.habilitado = habilitado;
 	}
 
-	public Integer getId() {
-		return id;
+	public Curso getCurso() {
+		return curso;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public String getNome() {
@@ -136,5 +142,7 @@ public class Usuario implements UserDetails {
 			return false;
 		return true;
 	}
-	
+
+
+
 }
