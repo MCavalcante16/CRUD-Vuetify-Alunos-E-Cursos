@@ -115,8 +115,14 @@ export default {
     },
     deleteItem(item) {
       const index = this.usuarios.indexOf(item);
-      confirm("Você tem certeza que quer deletar esse item?") &&
-        this.usuarios.splice(index, 1);
+      confirm("Você tem certeza que quer deletar esse item?") && 
+      this.$store
+          .dispatch("auth/delete", {
+            id: this.usuarios[index].id
+          })
+          .then(() => {
+            this.$router.go(0);
+          });
     },
     close() {
       this.dialog = false;

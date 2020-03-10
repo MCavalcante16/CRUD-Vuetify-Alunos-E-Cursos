@@ -40,7 +40,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     public void delete(Integer id) {
-        usuarioRepository.deleteById(id);
+        Usuario usuarioU = usuarioRepository.findById(id).get();
+        usuarioRepository.delete(usuarioU);
     }
 
 }
