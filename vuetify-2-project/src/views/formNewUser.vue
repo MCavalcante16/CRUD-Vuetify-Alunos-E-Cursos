@@ -4,7 +4,7 @@
             <v-col cols="12" sm="8" md="4" >
                 <v-card class="elevation-12">
                     <v-toolbar color="primary" dark flat>
-                        <v-toolbar-title>Login</v-toolbar-title>
+                        <v-toolbar-title>Cadastro de Aluno</v-toolbar-title>
                     </v-toolbar>
                     <v-form @submit.prevent="onSubmit" ref="form" lazy-validation v-model="valid">
                         <v-card-text>

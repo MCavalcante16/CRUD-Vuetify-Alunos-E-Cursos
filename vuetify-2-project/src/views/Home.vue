@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card-widget enableActions :title="'Página Inicial'">
+    <v-card-widget enableActions :title="'Alunos'">
       <div slot="widget-header-action"></div>
       <div slot="widget-content">
         <v-row>

@@ -2,6 +2,8 @@ import store from '../store'
 import LoginPage from '../views/Login'
 import Home from '../views/Home'
 import formNewUser from '../views/formNewUser'
+import Cursos from '../views/Cursos'
+import newCurso from '../views/formNewCurso'
 
 
 export default [
@@ -27,6 +29,18 @@ export default [
         path: '/newUser',
         name: 'newUser',
         component: formNewUser
+    },
+
+    {
+        path: '/cursos',
+        name: 'Cursos',
+        component: Cursos
+    },
+
+    {
+        path: 'cursos/new',
+        name: 'newCurso',
+        component: newCurso
     },
 
     {
