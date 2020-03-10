@@ -8,6 +8,7 @@ import quixada.npi.springproject.repository.UsuarioRepository;
 import quixada.npi.springproject.service.UsuarioService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -31,11 +32,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     public void update(Usuario usuario) {
-        Usuario usuarioU = usuarioRepository.findByEmail(usuario.getEmail());
+        Usuario usuarioU = usuarioRepository.findById(usuario.getId()).get();
         usuarioU.setNome(usuario.getNome());
         usuarioU.setEmail(usuario.getEmail());
         usuarioU.setHabilitado(usuario.isHabilitado());
-        usuarioRepository.update(usuarioU.getNome(), usuarioU.getEmail(), usuarioU.isHabilitado(), usuarioU.getId());
+        usuarioRepository.save(usuarioU);
     }
 
     public void delete(Integer id) {
