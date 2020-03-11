@@ -11,7 +11,9 @@ import java.util.List;
 
 @RestController
 public class CursoController {
-    private CursoService c = new CursoServiceImpl();
+
+    @Autowired
+    private CursoService c;
 
     @GetMapping("/cursos")
     public ResponseEntity<List<Curso>> findAll() {
@@ -24,7 +26,7 @@ public class CursoController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/newCurso")
+    @PostMapping("/cursos/new")
     public ResponseEntity<List<Curso>> create(@RequestBody Curso curso) {
         c.cadastrar(curso);
         return ResponseEntity.ok().build();
