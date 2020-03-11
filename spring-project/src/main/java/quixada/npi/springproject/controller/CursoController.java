@@ -12,8 +12,7 @@ import java.util.List;
 @RestController
 public class CursoController {
 
-    @Autowired
-    private CursoService c;
+    private CursoService c = new CursoServiceImpl();
 
     @GetMapping("/cursos")
     public ResponseEntity<List<Curso>> findAll() {
@@ -32,13 +31,13 @@ public class CursoController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{idCurso}")
+    @DeleteMapping("/cursos/{idCurso}")
     public ResponseEntity<List<Curso>> delete(@PathVariable Integer id) {
         c.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{idCurso}")
+    @PutMapping("/cursos/{idCurso}")
     public ResponseEntity<List<Curso>> update(@RequestBody Curso curso) {
         c.update(curso);
         return ResponseEntity.ok().build();

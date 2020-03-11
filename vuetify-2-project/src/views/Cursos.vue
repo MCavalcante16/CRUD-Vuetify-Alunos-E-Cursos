@@ -27,10 +27,10 @@
                               <v-text-field v-model="editedItem.nome" label="Nome"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
-                              <v-text-field v-model="editedItem.email" label="Sigla"></v-text-field>
+                              <v-text-field v-model="editedItem.sigla" label="Sigla"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
-                              <v-text-field v-model="editedItem.email" label="Turno"></v-text-field>
+                              <v-text-field v-model="editedItem.turno" label="Turno"></v-text-field>
                             </v-col>
                           </v-row>
                         </v-container>
@@ -89,7 +89,7 @@ export default {
     defaultItem: {
       nome: "",
       sigla: "",
-      turno: false
+      turno: ""
     }
   }),
   created() {

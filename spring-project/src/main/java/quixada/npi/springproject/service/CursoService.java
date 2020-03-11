@@ -12,6 +12,8 @@ public interface CursoService {
 
     void cadastrar(Curso curso);
 
+    void cadastrarUsuario(Usuario usuario);
+
     void update(Curso curso);
 
     void delete(Integer id);
