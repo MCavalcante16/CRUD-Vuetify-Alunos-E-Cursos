@@ -38,7 +38,7 @@ export default [
     },
 
     {
-        path: 'cursos/new',
+        path: '/cursos/new',
         name: 'newCurso',
         component: newCurso
     },

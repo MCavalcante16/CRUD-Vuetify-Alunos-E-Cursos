@@ -43,6 +43,16 @@ const actions = {
             .finally(() => resolve())
         })
     },
+    newCurso ({commit, dispatch}, authData) {
+        return new Promise((resolve, reject) => {
+            axios.post('/newCurso', {
+                nome: authData.nome,
+                sigla: authData.sigla,
+            })
+            .catch(error => console.log(error))
+            .finally(() => resolve())
+        })
+    },
 
     update ({commit, dispatch}, authData) {
         return new Promise((resolve, reject) => {

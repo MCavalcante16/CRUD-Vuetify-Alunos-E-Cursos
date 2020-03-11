@@ -25,7 +25,7 @@ public class CursoController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/cursos/new")
+    @PostMapping("/cursos/newCurso")
     public ResponseEntity<List<Curso>> create(@RequestBody Curso curso) {
         c.cadastrar(curso);
         return ResponseEntity.ok().build();

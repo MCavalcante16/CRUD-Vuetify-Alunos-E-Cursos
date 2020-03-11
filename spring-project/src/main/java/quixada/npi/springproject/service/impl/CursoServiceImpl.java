@@ -9,7 +9,6 @@ import quixada.npi.springproject.service.CursoService;
 import java.util.List;
 
 public class CursoServiceImpl implements CursoService {
-    @Autowired
     private CursoRepository cursoRepository;
 
     @Override
